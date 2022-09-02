@@ -1,0 +1,7 @@
+{
+    "name": "aws-ingest-data",
+    "version": "1.0.0",
+    "description": "Ingestão de dados para AWS",
+    "author": "Gabriel Vinicius e Eduardo dos Santos",
+    "license": "MIT"
+  }

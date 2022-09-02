@@ -1,0 +1,15 @@
+service: aws-ingest-data
+
+provider:
+  name: aws
+  runtime: python3.9
+  stage: dev
+  region: us-west-2
+
+resources:
+  Resources:
+    S3Bucket:
+      Type: 'AWS::S3::Bucket'
+      DeletionPolicy: Retain
+      Properties: 
+        BucketName: serverless-bucket-testing-87349261
