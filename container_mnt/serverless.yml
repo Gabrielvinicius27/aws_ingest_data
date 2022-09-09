@@ -6,10 +6,19 @@ provider:
   stage: dev
   region: us-west-2
 
+custom:
+  prefix: "fiap-fase3-grupo-l"
+
 resources:
   Resources:
-    S3Bucket:
+    S3BucketSmallFiles:
       Type: 'AWS::S3::Bucket'
       DeletionPolicy: Retain
       Properties: 
-        BucketName: serverless-bucket-testing-87349261
+        BucketName: ${self:custom.prefix}-small-files-bucket
+    SQSQueueCsvJson:
+      Type: 'AWS::SQS::Queue'
+      Properties:
+        QueueName: ${self:custom.prefix}-csv-to-json-sqs
+        VisibilityTimeout: 30
+        MessageRetentionPeriod: 360

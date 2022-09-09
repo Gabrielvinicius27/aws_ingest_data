@@ -5,11 +5,19 @@
     "ServerlessDeploymentBucket": {
       "Type": "AWS::S3::Bucket"
     },
-    "S3Bucket": {
+    "S3BucketSmallFiles": {
       "Type": "AWS::S3::Bucket",
       "DeletionPolicy": "Retain",
       "Properties": {
-        "BucketName": "serverless-bucket-testing-87349261"
+        "BucketName": "fiap-fase3-grupo-l-small-files-bucket"
+      }
+    },
+    "SQSQueueCsvJson": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "fiap-fase3-grupo-l-csv-to-json-sqs",
+        "VisibilityTimeout": 30,
+        "MessageRetentionPeriod": 360
       }
     }
   },

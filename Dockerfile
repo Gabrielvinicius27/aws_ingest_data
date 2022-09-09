@@ -20,4 +20,4 @@ RUN npm config set strict-ssl false && \
     npm install -g serverless@1.29.2 && \
     export PATH=$PATH:/usr/local/bin/serverless
 WORKDIR /mnt
-CMD [ "serverless", "deploy" ]
+CMD [ "serverless", "deploy", "--force"]

@@ -19,11 +19,19 @@
           "ServerlessDeploymentBucket": {
             "Type": "AWS::S3::Bucket"
           },
-          "S3Bucket": {
+          "S3BucketSmallFiles": {
             "Type": "AWS::S3::Bucket",
             "DeletionPolicy": "Retain",
             "Properties": {
-              "BucketName": "serverless-bucket-testing-87349261"
+              "BucketName": "fiap-fase3-grupo-l-small-files-bucket"
+            }
+          },
+          "SQSQueueCsvJson": {
+            "Type": "AWS::SQS::Queue",
+            "Properties": {
+              "QueueName": "fiap-fase3-grupo-l-csv-to-json-sqs",
+              "VisibilityTimeout": 30,
+              "MessageRetentionPeriod": 360
             }
           }
         },
@@ -52,15 +60,26 @@
         }
       }
     },
+    "custom": {
+      "prefix": "fiap-fase3-grupo-l"
+    },
     "pluginsData": {},
     "functions": {},
     "resources": {
       "Resources": {
-        "S3Bucket": {
+        "S3BucketSmallFiles": {
           "Type": "AWS::S3::Bucket",
           "DeletionPolicy": "Retain",
           "Properties": {
-            "BucketName": "serverless-bucket-testing-87349261"
+            "BucketName": "fiap-fase3-grupo-l-small-files-bucket"
+          }
+        },
+        "SQSQueueCsvJson": {
+          "Type": "AWS::SQS::Queue",
+          "Properties": {
+            "QueueName": "fiap-fase3-grupo-l-csv-to-json-sqs",
+            "VisibilityTimeout": 30,
+            "MessageRetentionPeriod": 360
           }
         }
       },
@@ -68,7 +87,7 @@
     }
   },
   "package": {
-    "artifactDirectoryName": "serverless/aws-ingest-data/dev/1662156131206-2022-09-02T22:02:11.206Z",
+    "artifactDirectoryName": "serverless/aws-ingest-data/dev/1662682175992-2022-09-09T00:09:35.992Z",
     "artifact": ""
   }
 }
