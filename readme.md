@@ -7,3 +7,4 @@
 5. Um bucket teste será criado
 
 Teste   
+eduzue
