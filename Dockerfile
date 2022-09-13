@@ -1,5 +1,5 @@
-FROM node:alpine
-
+FROM node:14.15.1-alpine
+USER root
 #RUN npm install -g npm@latest
 
 # Adding bash in alpine
@@ -19,5 +19,19 @@ RUN pip3 install awscli
 RUN npm config set strict-ssl false && \
     npm install -g serverless@1.29.2 && \
     export PATH=$PATH:/usr/local/bin/serverless
-WORKDIR /mnt
-CMD [ "serverless", "deploy", "--force"]
+
+# Copiar o serverless.yaml e requirements.txt da pasta local para a imagem
+COPY /container_mnt/aws-ingest-data/. /mnt/aws-ingest-data/.
+
+WORKDIR /mnt/aws-ingest-data
+
+# Instala as bibliotecas do arquivo requirements.txt
+RUN pip3 install -r requirements.txt
+
+# Instala o plugin do serverless que interage com o requirements.txt
+RUN sls plugin install -n serverless-python-requirements
+
+# Copia o
+COPY . /mnt/aws-ingest-data
+
+CMD [ "sls", "deploy", "--force"]
