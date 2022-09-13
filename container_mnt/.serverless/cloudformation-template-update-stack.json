@@ -12,6 +12,13 @@
         "BucketName": "fiap-fase3-grupo-l-small-files-bucket"
       }
     },
+    "S3Bucketjsonraw": {
+      "Type": "AWS::S3::Bucket",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "BucketName": "fiap-fase3-grupo-l-json-raw"
+      }
+    },
     "SQSQueueCsvJson": {
       "Type": "AWS::SQS::Queue",
       "Properties": {

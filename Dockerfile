@@ -1,3 +1,4 @@
+#imagem Docker do node, versão alpine.
 FROM node:alpine
 
 #RUN npm install -g npm@latest

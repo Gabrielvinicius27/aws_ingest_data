@@ -1,0 +1,90 @@
+docker compose build, na pasta do diretório.
+docker compose up, para subir a máquina virtual.
+
+
+Criar role e usuário Lambda
+
+Policies : lambdas3 
+Permissão para gravar e ler todos os S3
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:CreateLogGroup",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:*:*:*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+
+
+Role com essa permissão:
+role-lambdas3
+
+Usuário lambda_s3
+secret:
+8spR0bfgSuO0toXce8Zn3ddGbSSMIjVmc3D9i4ij
+access key id:
+8spR0bfgSuO0toXce8Zn3ddGbSSMIjVmc3D9i4ij
+
+
+
+
+Para criar um evento para o S3, para teste de envio do arquivo
+{
+  "Records":[
+    {
+      "eventVersion":"2.0",
+      "eventSource":"aws:s3",
+      "awsRegion":"us-west-2",
+      "eventTime":"1970-01-01T00:00:00.000Z",
+      "eventName":"ObjectCreated:Put",
+      "userIdentity":{
+        "principalId":"AIDAJDPLRKLG7UEXAMPLE"
+      },
+      "requestParameters":{
+        "sourceIPAddress":"127.0.0.1"
+      },
+      "responseElements":{
+        "x-amz-request-id":"C3D13FE58DE4C810",
+        "x-amz-id-2":"FMyUVURIY8/IgAtTv8xRjskZQpcIZ9KG4V5Wp6S7S/JRWeUWerMUE5JgHvANOjpD"
+      },
+      "s3":{
+        "s3SchemaVersion":"1.0",
+        "configurationId":"testConfigRule",
+        "bucket":{
+          "name":"fiap-fase3-grupo-l-small-files-bucket",
+          "ownerIdentity":{
+            "principalId":"A3NL1KOZZKExample"
+          },
+          "arn":"arn:aws:s3:::fiap-fase3-grupo-l-small-files-bucket"
+        },
+        "object":{
+          "key":"chunk23.csv",
+          "size":1024,
+          "eTag":"d41d8cd98f00b204e9800998ecf8427e",
+          "versionId":"096fKKXTRTtl3on89fVO.nfljtsv6qko"
+        }
+      }
+    }
+  ]
+}
+
+
+
+
