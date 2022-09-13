@@ -1,0 +1,37 @@
+{
+    "name": "aws_ingest_data",
+    "version": "1.0.0",
+    "description": "Desafio FIAP, ingestão de dados com AWS",
+    "private": false,
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/Gabrielvinicius27/aws_ingest_data"
+    },
+    "author": "Gabrielvinicius27",
+    "license": "MIT",
+    "keywords": [
+      "nodejs",
+      "aws",
+      "lambda",
+      "serverless",
+      "docker"
+    ],
+    "scripts": {
+      "sls": "serverless",
+      "seed": "node ./seed/runner.js",
+      "start": "sls offline start",
+      "deploy": "serverless deploy --aws-profile serverless",
+      "package": "serverless package"
+    },
+    "engines": {
+      "node": "~12.16.0"
+    },
+    "dependencies": {
+      "dotenv": "^8.2.0"
+    },
+    "devDependencies": {
+      "aws-sdk": "^2.694.0",
+      "serverless": "^1.72.0",
+      "serverless-offline": "^6.4.0"
+    }
+  }

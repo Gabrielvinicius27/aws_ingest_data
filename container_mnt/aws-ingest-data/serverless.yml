@@ -1,0 +1,40 @@
+service: aws-ingest-data
+
+provider:
+  name: aws
+  runtime: python3.8
+  stage: dev
+  region: us-west-2
+
+custom:
+  prefix: "fiap-fase3-grupo-l"
+  pythonRequirements:
+    slim: true
+    dockerizePip: false
+
+functions:
+  test:
+    handler: lambda_scripts/handler.lambda_handler # required, handler set in AWS Lambda
+    name: ${self:custom.prefix}-test # optional, Deployed Lambda name
+    description: Função de teste # optional, Description to publish to AWS
+    runtime: python3.8 # optional overwrite, default is provider runtime
+    memorySize: 512 # optional, in MB, default is 1024
+    timeout: 30 # optional, in seconds, default is 6
+    
+
+resources:
+  Resources:
+    S3BucketSmallFiles:
+      Type: 'AWS::S3::Bucket'
+      DeletionPolicy: Retain
+      Properties: 
+        BucketName: ${self:custom.prefix}-small-files-bucket
+    SQSQueueCsvJson:
+      Type: 'AWS::SQS::Queue'
+      Properties:
+        QueueName: ${self:custom.prefix}-csv-to-json-sqs
+        VisibilityTimeout: 30
+        MessageRetentionPeriod: 360
+
+plugins:
+  - serverless-python-requirements 

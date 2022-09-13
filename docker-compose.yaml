@@ -8,14 +8,3 @@ services:
     environment:
       AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
       AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-    secrets:
-      - aws_access_key_id
-      - aws_secret_access_key
-    volumes:
-      - ./container_mnt:/mnt
-secrets:
-  aws_access_key_id:
-    file: ./credentials/aws_access_key_id.txt
-  aws_secret_access_key:
-    file: ./credentials/aws_secret_access_key.txt
-  
