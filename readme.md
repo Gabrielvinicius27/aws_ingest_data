@@ -5,6 +5,3 @@
 3. Altere o nome do bucket no arquivo serverless.yaml
 4. Execute docker compose up --build
 5. Um bucket teste será criado
-
-Teste   
-eduzue
